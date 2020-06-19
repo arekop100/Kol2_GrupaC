@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import {AKDataService} from "../../services/ak-data.service";
 
 @Component({
   selector: 'app-shop-ak',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopAKComponent implements OnInit {
 
-  constructor() { }
+  @Input() filterText: string;
+  public items$: any;
+
+  constructor(private service: AKDataService) { }
 
   ngOnInit(): void {
+    this.getAll();
+  }
+
+  private getAll() {
+    this.service.getAll().subscribe(response =>{
+      this.items$ = response;
+    });
   }
 
 }

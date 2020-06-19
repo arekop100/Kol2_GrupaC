@@ -22,4 +22,7 @@ export class DataService {
 }
 
 export class AKDataService {
+  getAll() {
+
+  }
 }
